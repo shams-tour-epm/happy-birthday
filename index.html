@@ -1,1 +1,211 @@
-111
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Подарок для вас</title>
+<meta name="description" content="С днём рождения! Для вас — с любовью.">
+<meta name="theme-color" content="#fbf3e8">
+<meta property="og:title" content="Для вас — с любовью">
+<meta property="og:description" content="Нажмите, здесь кое-что особенное">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e8a9b5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23f6e7a6' stroke='%23c9a55c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400&display=swap">
+<style>
+:root{--ink:#4a352b;--rose:#e8a9b5;--blue:#bcd9ea;--gold:#c9a55c;--cream:#fbf3e8;--serif:"Cormorant Garamond",Georgia,serif;--sans:Jost,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:radial-gradient(900px 500px at 15% 0,#fde6ea,transparent 65%),radial-gradient(800px 500px at 100% 30%,#e2eff8,transparent 65%),var(--cream);color:var(--ink);font:400 1.22rem/1.8 var(--serif);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+body:not(.open){overflow:hidden;height:100svh}
+main{display:none}
+body.open main{display:block;animation:in 1.6s both}
+@keyframes in{from{opacity:0}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity 1.3s ease,transform 1.3s ease}
+.rv.on{opacity:1;transform:none}
+
+/* первый экран */
+#intro{position:fixed;inset:0;z-index:20;display:grid;place-content:center;justify-items:center;gap:1.6rem;text-align:center;padding:24px;background:radial-gradient(70vmax 60vmax at 50% 45%,#fff6ee,#fadfe4 55%,#dcebf6);transition:opacity 1.3s ease}
+#intro.out{opacity:0;pointer-events:none}
+#intro .c{position:absolute;color:var(--rose);opacity:.75;width:46vmin}
+.c1{left:-12vmin;top:-12vmin}.c2{right:-14vmin;bottom:-12vmin;width:58vmin!important;color:var(--blue)!important}.c3{right:-6vmin;top:8vmin;width:24vmin!important;color:#f1e0c5!important}.c4{left:-4vmin;bottom:6vmin;width:22vmin!important;color:#f6e7a6!important}
+.em{width:min(52vmin,260px);animation:spin 60s linear infinite;filter:drop-shadow(0 0 24px rgba(246,231,166,.9))}
+@keyframes spin{to{transform:rotate(360deg)}}
+.btn{position:relative;font:500 1.2rem/1 var(--serif);letter-spacing:.06em;padding:1.1em 2.2em;min-height:56px;border-radius:99px;border:1px solid var(--gold);background:linear-gradient(135deg,#fffaf2,#f7dfe3);color:var(--ink);cursor:pointer;box-shadow:0 10px 30px rgba(201,165,92,.3);transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent}
+.btn:active,.btn.press{transform:scale(.94)}
+#go{animation:pulse 2.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 10px 44px rgba(232,169,181,.75)}}
+.cap{font-style:italic;font-size:1.1rem;opacity:.8}
+
+/* эффекты */
+#cv{position:fixed;inset:0;width:100%;height:100%;z-index:40;pointer-events:none}
+#pl{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+#pl i{position:absolute;top:-6vh;width:var(--s);height:calc(var(--s)*1.4);border-radius:100% 0 100% 0;opacity:.6;animation:fall var(--d) linear infinite}
+@keyframes fall{to{transform:translate(var(--x),112vh) rotate(540deg)}}
+#fl{position:fixed;inset:0;z-index:35;pointer-events:none;opacity:0;background:radial-gradient(60vmax at 50% 50%,rgba(246,215,160,.55),rgba(232,169,181,.25) 50%,transparent 75%)}
+#fl.go{animation:flash 1.8s ease-out}
+@keyframes flash{30%{opacity:1}to{opacity:0}}
+#snd{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:50;min-height:44px;padding:0 1.1em;font:400 .85rem var(--sans);border-radius:99px;border:1px solid var(--gold);background:rgba(255,250,242,.9);color:var(--ink);cursor:pointer}
+
+/* поздравление */
+#hero{max-width:1080px;margin:0 auto;padding:12vh 22px 8vh;display:grid;gap:36px}
+#ph{position:relative;justify-self:center;width:min(100%,420px)}
+.gl{position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(closest-side,rgba(246,231,166,.85),rgba(232,169,181,.35) 60%,transparent);opacity:0;transition:opacity 1.6s}
+.gl.on{opacity:1}
+#ph figure{position:relative;border-radius:26px;overflow:hidden;border:6px solid #fffaf2;box-shadow:0 24px 60px rgba(120,80,60,.25),0 0 0 1px var(--gold);aspect-ratio:4/5;background:linear-gradient(160deg,#f6dfe3,#e2eff8)}
+#ph img{width:100%;height:100%;object-fit:cover;display:block}
+#ph figure.photo-missing{background:linear-gradient(145deg,#f8e5e7,#f7eee1 55%,#dcebf6)}
+#ph figure.photo-missing::after{content:"Здесь будет фотография букета";display:grid;place-items:center;height:100%;padding:24px;text-align:center;font:italic 1.1rem var(--serif);color:#8a6a58}
+h1{font-weight:500;font-size:clamp(2.7rem,10vw,4.8rem);line-height:1.05;text-align:center;margin-bottom:.45em;letter-spacing:.01em}
+#hero p{margin:0 auto 1.15em;max-width:34em}
+@media(min-width:900px){#hero{grid-template-columns:420px 1fr;gap:64px;align-items:start}#ph{position:sticky;top:10vh}h1{text-align:left}#hero p{margin-inline:0}}
+
+/* подарок */
+#gift{padding:10vh 22px;text-align:center}
+h2{font-weight:500;font-size:clamp(2rem,7vw,3.2rem);line-height:1.15;max-width:16em;margin:0 auto}
+.sub{font-style:italic;opacity:.8;margin:.7em 0 2.2em}
+.cert{position:relative;max-width:460px;margin:0 auto 2rem;padding:46px 28px;background:linear-gradient(160deg,#fffaf1,#f9ecdc);border:1px solid var(--gold);outline:1px solid var(--gold);outline-offset:-9px;border-radius:6px;box-shadow:0 20px 50px rgba(120,80,60,.18)}
+.cert.on{animation:glow 3s ease-out 1}
+@keyframes glow{40%{box-shadow:0 0 60px rgba(201,165,92,.6),0 20px 50px rgba(120,80,60,.18)}}
+.cert small{font:300 .8rem var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#9a7b3c}
+.cert h3{max-width:100%;font-weight:600;font-size:clamp(1.25rem,5.5vw,2.3rem);line-height:1.18;letter-spacing:.055em;text-transform:uppercase;margin:.55em auto .1em;color:#6b4a3a;overflow-wrap:break-word;word-break:normal;hyphens:auto}
+.ln{width:60px;height:1px;background:var(--gold);margin:14px auto}
+.n{font-size:1.5rem}.d{font-style:italic;color:#8a6a58}
+.cert q{display:block;margin-top:1.5em;font-style:italic;font-size:clamp(1rem,4.3vw,1.1rem);line-height:1.55;opacity:.85;quotes:none;overflow-wrap:anywhere}
+.cf{position:absolute;width:56px;color:var(--rose);opacity:.85}
+.cf.a{left:-14px;top:-14px}.cf.b{right:-14px;bottom:-14px;color:var(--blue)}
+
+/* финал */
+#end{min-height:100svh;display:grid;place-content:center;gap:1.6em;text-align:center;padding:12vh 24px;position:relative;overflow:hidden}
+#end::before{content:"";position:absolute;left:50%;top:50%;width:120vmin;height:120vmin;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(246,231,166,.55),transparent)}
+#end>*{position:relative;max-width:30em;margin-inline:auto}
+#end .f{position:absolute;width:70px;color:var(--rose);opacity:.6;left:12%;top:14%}
+#end .f.z{left:auto;right:10%;top:auto;bottom:12%;color:var(--blue)}
+.big{font-weight:500;font-style:italic;font-size:clamp(2.3rem,9.5vw,4.2rem);line-height:1.15;background:linear-gradient(90deg,#b88a3e,#e6c987,#b88a3e);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+@media(max-width:480px){
+  #gift{padding:8vh 16px}
+  .cert{width:100%;padding:40px 22px;outline-offset:-7px}
+  .cert small{font-size:.72rem;letter-spacing:.2em}
+  .cert h3{font-size:clamp(1.15rem,5.7vw,1.65rem);letter-spacing:.025em;overflow-wrap:anywhere}
+  .n{font-size:1.25rem}
+  .cert q{font-size:1rem}
+  .cf{width:42px}
+}
+@media(prefers-reduced-motion:reduce){
+  #go,.em{animation:none!important}
+  .rv{transition:none!important;opacity:1!important;transform:none!important}
+  #intro,#fl{transition:none!important}
+}
+
+</style>
+<noscript><style>#intro,#snd{display:none}main{display:block}.rv{opacity:1;transform:none}body{overflow:auto!important;height:auto!important}</style></noscript>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="f" viewBox="-50 -50 100 100"><g fill="currentColor" stroke="#fff" stroke-opacity=".55" stroke-width=".7"><ellipse cy="-24" rx="12" ry="24"/><ellipse cy="-24" rx="12" ry="24" transform="rotate(60)"/><ellipse cy="-24" rx="12" ry="24" transform="rotate(120)"/><ellipse cy="-24" rx="12" ry="24" transform="rotate(180)"/><ellipse cy="-24" rx="12" ry="24" transform="rotate(240)"/><ellipse cy="-24" rx="12" ry="24" transform="rotate(300)"/></g><circle r="8" fill="#f6e7a6" stroke="#c9a55c" stroke-width="1.5"/></symbol></svg>
+
+<section id="intro">
+  <svg class="c c1" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+  <svg class="c c2" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+  <svg class="c c3" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+  <svg class="c c4" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+  <svg class="em" viewBox="-50 -50 100 100" style="color:var(--rose)"><circle r="47" fill="none" stroke="#c9a55c" stroke-width=".4"/><circle r="43" fill="none" stroke="#c9a55c" stroke-width=".25" stroke-dasharray="1 2"/><use href="#f" x="-32" y="-32" width="64" height="64"/></svg>
+  <button id="go" class="btn" type="button">Для вас — с любовью</button>
+  <p class="cap">Нажмите, здесь кое-что особенное</p>
+</section>
+
+<canvas id="cv"></canvas><div id="pl"></div><div id="fl"></div>
+<button id="snd" type="button" hidden aria-label="Включить или выключить мелодию">♪ звук</button>
+
+<main>
+  <section id="hero">
+    <div id="ph"><i class="gl"></i><figure class="rv hold"><img id="bq" src="bouquet.jpg" alt="Фотография подаренного букета" onerror="this.style.display='none';this.closest('figure').classList.add('photo-missing')"></figure></div>
+    <article>
+      <h1 class="rv hold">С днём рождения, мама!</h1>
+      <p class="rv">В этот особенный день хочется пожелать самого главного — крепкого здоровья, долгих и счастливых лет жизни, душевного спокойствия и бесконечных поводов для улыбки.</p>
+      <p class="rv">Пусть в доме всегда царят мир, тепло и баракат, пусть рядом будут любимые люди, а каждый новый день приносит хорошие новости и приятные моменты. Пусть Всевышний оберегает от невзгод, дарует здоровье, благополучие и силы на долгие годы. Пусть все добрые пожелания сбываются, а сердце всегда будет наполнено радостью и благодарностью.</p>
+      <p class="rv">Пусть дети и близкие радуют своими успехами, в семье всегда будут согласие, уважение и любовь. Пусть за дастарханом чаще собираются родные, звучит смех, а каждый праздник приносит новые счастливые воспоминания.</p>
+      <p class="rv">Желаю, чтобы впереди было ещё много прекрасных лет, наполненных путешествиями, приятными сюрпризами, исполнением желаний и временем для себя. Пусть красота, улыбка и хорошее настроение сопровождают каждый день, а жизнь щедро возвращает всё добро, которое вы дарите окружающим.</p>
+    </article>
+  </section>
+
+  <section id="gift">
+    <h2 class="rv">А теперь — кое-что особенное для вас</h2>
+    <p class="sub rv">Немного заботы, внимания и времени только для себя</p>
+    <!-- правка сертификата: меняйте текст прямо здесь -->
+    <div class="cert rv" id="cert">
+      <svg class="cf a" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+      <svg class="cf b" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+      <small>Подарок для вас</small>
+      <h3>Биоревитализация</h3>
+      <div class="ln"></div>
+      <p class="n">2 оплаченные процедуры</p>
+      <p class="d">Косметолог: Маргарита</p>
+      <q>Вы столько сделали для нас, что теперь пришло время немного подумать о себе. Позвольте и нам позаботиться о вас.</q>
+    </div>
+  </section>
+
+  <section id="end">
+    <svg class="f" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+    <svg class="f z" viewBox="-50 -50 100 100"><use href="#f"/></svg>
+    <p class="rv">Пусть впереди будет ещё много счастливых лет, наполненных здоровьем, любовью, радостью и благополучием. Пусть каждый день приносит душевное тепло, а рядом всегда будут самые дорогие люди.</p>
+    <p class="big rv">С днём рождения, мама!</p>
+  </section>
+</main>
+
+<script>
+// лог: HH:MM:SS  LEVEL  msg
+const LC={INFO:'#b45fd6',WARN:'#ff7fbf',ERROR:'#e03131',OK:'#22b8cf',STEP:'#22b8cf',TRACE:'#22b8cf',DONE:'#22b8cf'};
+function L(l,m){l=l.toUpperCase();console.log('%c'+new Date().toTimeString().slice(0,8)+'  %c'+l.padEnd(5)+'%c  '+m,'','color:'+LC[l],'')}
+const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+L('info','страница загружена, reduced-motion: '+rm);
+if(!$('bq').getAttribute('src'))L('warn','фото букета не задано');
+
+// лепестки
+const pc=['#f4c3cc','#e8a9b5','#fbe3e8','#f6e7a6','#cfe3f0'];
+function petals(n,late){for(let i=0;i<n;i++){const e=document.createElement('i');e.style.cssText='left:'+Math.random()*100+'%;--s:'+(9+Math.random()*10)+'px;--d:'+(10+Math.random()*9)+'s;--x:'+(Math.random()-.5)*180+'px;animation-delay:'+(late?Math.random()*3:-Math.random()*12)+'s;background:'+pc[i%pc.length];$('pl').appendChild(e)}L('trace','лепестков добавлено: '+n)}
+if(!rm)petals(6);
+
+// конфетти
+function burst(){
+  const c=$('cv'),x=c.getContext('2d'),d=Math.min(devicePixelRatio||1,2),W=c.width=innerWidth*d,H=c.height=innerHeight*d,n=innerWidth<600?110:180,col=['#e8a9b5','#f4d6dc','#fbf1e2','#d4af6a','#f0d9a0','#bcd9ea','#f6e7a6'],P=[];
+  for(let i=0;i<n;i++){const a=Math.random()*6.283,s=(6+Math.random()*13)*d;P.push({x:W/2,y:H*.5,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6*d,w:(6+Math.random()*7)*d,h:(3+Math.random()*5)*d,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:col[i%7],g:i%4==0,l:1})}
+  let t=0;L('step','конфетти: '+n+' частиц');
+  (function f(){x.clearRect(0,0,W,H);t++;let k=0;
+    for(const p of P){p.vx*=.985;p.vy=p.vy*.985+.28*d;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;if(t>110)p.l-=.02;if(p.l<=0||p.y>H+30)continue;k++;
+      x.globalAlpha=p.l*(p.g?.6+.4*Math.sin(t/3+p.r):1);x.fillStyle=p.g?'#e6c987':p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);
+      if(p.g){x.beginPath();x.arc(0,0,p.h*.6,0,6.3);x.fill()}else{x.scale(1,Math.cos(p.r*3));x.fillRect(-p.w/2,-p.h/2,p.w,p.h)}x.restore()}
+    if(k&&t<300)requestAnimationFrame(f);else{x.clearRect(0,0,W,H);L('ok','конфетти закончилось')}})();
+}
+
+// мелодия happy birthday (только после нажатия)
+const N=[[67,.75],[67,.25],[69,1],[67,1],[72,1],[71,2],[67,.75],[67,.25],[69,1],[67,1],[74,1],[72,2],[67,.75],[67,.25],[79,1],[76,1],[72,1],[71,1],[69,1],[77,.75],[77,.25],[76,1],[72,1],[74,1],[72,2]];
+let ac,mg,snOn=true;
+function loop(){let t=ac.currentTime+.1;const b=.6;
+  for(const[m,d]of N){const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=440*2**((m-69)/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+d*b*1.5);o.connect(g);g.connect(mg);o.start(t);o.stop(t+d*b*1.5+.05);t+=d*b}
+  setTimeout(loop,(t-ac.currentTime+2)*1000)}
+function music(){try{ac=new(window.AudioContext||window.webkitAudioContext)();mg=ac.createGain();mg.gain.value=.6;mg.connect(ac.destination);ac.resume();loop();$('snd').hidden=false;L('ok','мелодия запущена')}catch(e){L('error','аудио недоступно: '+e.message)}}
+$('snd').onclick=()=>{snOn=!snOn;mg.gain.setTargetAtTime(snOn?.6:0,ac.currentTime,.05);$('snd').textContent=snOn?'♪ звук':'♪ выкл';L('info','звук: '+(snOn?'вкл':'выкл'))};
+document.addEventListener('visibilitychange',()=>{if(ac)document.hidden?ac.suspend():snOn&&ac.resume()});
+
+// появление блоков при прокрутке
+function watch(){const o=new IntersectionObserver(e=>e.forEach(v=>{if(v.isIntersecting){v.target.classList.add('on');o.unobserve(v.target);L('trace','блок виден: '+(v.target.id||v.target.tagName))}}),{threshold:.25});
+  document.querySelectorAll('.rv:not(.hold)').forEach(e=>o.observe(e))}
+
+// сценарий нажатия
+let opened=0;
+$('go').onclick=()=>{
+  if(opened)return;opened=1;L('step','кнопка нажата');
+  $('go').classList.add('press');music();
+  burst();if(!rm)petals(10,1);else L('info','режим уменьшения движения: без падающих лепестков');
+  $('fl').classList.add('go');
+  setTimeout(()=>{$('intro').classList.add('out');document.body.classList.add('open');scrollTo(0,0);watch();L('ok','страница раскрыта');setTimeout(()=>$('intro').hidden=true,1400)},700);
+  setTimeout(()=>{document.querySelector('.gl').classList.add('on');L('step','свечение')},1400);
+  setTimeout(()=>{document.querySelector('#ph figure').classList.add('on');L('step','фото букета')},2400);
+  setTimeout(()=>{document.querySelector('h1').classList.add('on');L('done','заголовок показан')},3800);
+};
+</script>
+</body>
+</html>
